@@ -1,405 +1,436 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
-
-  @override
-  _MyHomePageState createState() {
-    return _MyHomePageState();
-  }
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  List<Widget> data = [
-    const ProductsTab(),
-    const SearchTab(),
-    const CartTab(),
-  ];
+class WhatsAppClone extends StatelessWidget {
+  const WhatsAppClone({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-        navigationBar: const CupertinoNavigationBar(
-          leading: Text(
-            "Cupertino Store",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-        ),
-        child: CupertinoTabScaffold(
-          tabBar: CupertinoTabBar(
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(CupertinoIcons.home),
-                label: "Products",
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(CupertinoIcons.search),
-                label: "Search",
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(CupertinoIcons.cart),
-                label: "Cart",
-              )
-            ],
-          ),
-          tabBuilder: (context, index) {
-            return CupertinoTabView(
-              builder: (context) {
-                return data[index];
-              },
-            );
-          },
-        ));
-  }
-}
-
-class ProductsTab extends StatelessWidget {
-  const ProductsTab({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-        child: SingleChildScrollView(
-      child: Column(
-        children: [
-          const SizedBox(
-            height: 70,
-          ),
-          ListTile(
-              leading: const FlutterLogo(size: 35),
-              title: const Text(
-                "Product 1",
-              ),
-              subtitle: const Text("200 ₹"),
-              trailing: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  CupertinoIcons.add_circled,
-                  color: Colors.blue,
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: DefaultTabController(
+        length: 3,
+        child: Scaffold(
+          appBar: AppBar(
+            elevation: 0,
+            backgroundColor: Colors.teal,
+            bottom: const TabBar(
+              indicatorWeight: 5,
+              indicatorColor: Colors.white,
+              tabs: [
+                Tab(
+                  text: "CHATS",
                 ),
-              )),
-          const SizedBox(
-            height: 30,
-          ),
-          ListTile(
-              leading: const FlutterLogo(size: 35),
-              title: const Text("Product 2"),
-              subtitle: const Text("100 ₹"),
-              trailing: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  CupertinoIcons.add_circled,
-                  color: Colors.blue,
+                Tab(
+                  text: "STATUS",
                 ),
-              )),
-          const SizedBox(
-            height: 30,
-          ),
-          ListTile(
-              leading: const FlutterLogo(size: 35),
-              title: const Text("Product 3"),
-              subtitle: const Text("300 ₹"),
-              trailing: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  CupertinoIcons.add_circled,
-                  color: Colors.blue,
-                ),
-              )),
-          const SizedBox(
-            height: 30,
-          ),
-          ListTile(
-              leading: const FlutterLogo(size: 35),
-              title: const Text("Product 4"),
-              subtitle: const Text("400 ₹"),
-              trailing: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  CupertinoIcons.add_circled,
-                  color: Colors.blue,
-                ),
-              )),
-          const SizedBox(
-            height: 30,
-          ),
-          ListTile(
-              leading: const FlutterLogo(size: 35),
-              title: const Text("Product 5"),
-              subtitle: const Text("500 ₹"),
-              trailing: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  CupertinoIcons.add_circled,
-                  color: Colors.blue,
-                ),
-              )),
-          const SizedBox(
-            height: 30,
-          ),
-          ListTile(
-              leading: const FlutterLogo(size: 35),
-              title: const Text("Product 6"),
-              subtitle: const Text("600 ₹"),
-              trailing: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  CupertinoIcons.add_circled,
-                  color: Colors.blue,
-                ),
-              )),
-          const SizedBox(
-            height: 30,
-          ),
-          ListTile(
-              leading: const FlutterLogo(size: 35),
-              title: const Text("Product 7"),
-              subtitle: const Text("700 ₹"),
-              trailing: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  CupertinoIcons.add_circled,
-                  color: Colors.blue,
-                ),
-              )),
-        ],
-      ),
-    ));
-  }
-}
-
-class SearchTab extends StatelessWidget {
-  const SearchTab({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: const [
-                SizedBox(height: 50),
-                TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: '🔍    Search here...',
-                  ),
+                Tab(
+                  text: "CALLS",
                 ),
               ],
             ),
-          )),
-    );
-  }
-}
-
-class CartTab extends StatelessWidget {
-  const CartTab({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    int currentIndex = 0;
-    String? name;
-    String? email;
-    String? location;
-    final GlobalKey<FormState> contactInfoFormKey = GlobalKey<FormState>();
-    final TextEditingController nameController = TextEditingController();
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController locationController = TextEditingController();
-    return Material(
-        child: Column(
-      children: [
-        const SizedBox(
-          height: 30,
-        ),
-        Expanded(
-          child: IndexedStack(
-            index: currentIndex,
+            title: const Text(
+              'WhatsApp',
+              style: TextStyle(fontSize: 25),
+            ),
+            actions: [
+              IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+              IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert))
+            ],
+          ),
+          body: TabBarView(
             children: [
-              // contact
-              Container(
-                margin: const EdgeInsets.all(20),
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade300,
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: SingleChildScrollView(
-                  child: Form(
-                    key: contactInfoFormKey,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            const Expanded(
-                              child: Icon(Icons.person, size: 35),
-                            ),
-                            const SizedBox(
-                              width: 15,
-                            ),
-                            Expanded(
-                              flex: 10,
-                              child: TextFormField(
-                                controller: nameController,
-                                validator: (val) {
-                                  if (val!.isEmpty) {
-                                    return "Enter your name first";
-                                  }
-                                  return null;
-                                },
-                                onSaved: (val) {
-                                  name = val;
-                                },
-                                decoration: const InputDecoration(
-                                  label: Text("Name"),
-                                  hintText: "Enter your name here",
-                                  border: UnderlineInputBorder(),
-                                ),
-                              ),
-                            ),
-                          ],
+              SingleChildScrollView(
+                child: Column(
+                  children: const [
+                    ListTile(
+                        leading: FlutterLogo(size: 40),
+                        title: Text(
+                          'Person 1',
+                          style: TextStyle(
+                              fontSize: 19, fontWeight: FontWeight.bold),
                         ),
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            const Expanded(child: Icon(Icons.email, size: 30)),
-                            const SizedBox(width: 15),
-                            Expanded(
-                                flex: 10,
-                                child: TextFormField(
-                                  controller: emailController,
-                                  validator: (val) {
-                                    if (val!.isEmpty) {
-                                      return "Enter your email";
-                                    }
-                                    return null;
-                                  },
-                                  onSaved: (val) {
-                                    email = val;
-                                  },
-                                  keyboardType: TextInputType.number,
-                                  decoration: const InputDecoration(
-                                    label: Text("Email"),
-                                    hintText: "Enter your email here",
-                                    border: UnderlineInputBorder(),
-                                  ),
-                                ))
-                          ],
+                        subtitle: Text('Hello', style: TextStyle(fontSize: 18)),
+                        trailing: Text('2:00 pm')),
+                    SizedBox(height: 5),
+                    ListTile(
+                        leading: FlutterLogo(size: 40),
+                        title: Text(
+                          'Person 2',
+                          style: TextStyle(
+                              fontSize: 19, fontWeight: FontWeight.bold),
                         ),
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            const Expanded(
-                                child: Icon(Icons.location_on, size: 30)),
-                            const SizedBox(
-                              width: 15,
-                            ),
-                            Expanded(
-                              flex: 10,
-                              child: TextFormField(
-                                controller: locationController,
-                                validator: (val) {
-                                  if (val!.isEmpty) {
-                                    return "Enter your location";
-                                  }
-                                  return null;
-                                },
-                                onSaved: (val) {
-                                  location = val;
-                                },
-                                decoration: const InputDecoration(
-                                  label: Text("Location"),
-                                  hintText: "Enter your location here",
-                                  border: UnderlineInputBorder(),
-                                ),
-                              ),
-                            )
-                          ],
+                        subtitle: Text('Hello', style: TextStyle(fontSize: 18)),
+                        trailing: Text('11:44 am')),
+                    SizedBox(height: 5),
+                    ListTile(
+                        leading: FlutterLogo(size: 40),
+                        title: Text(
+                          'Person 3',
+                          style: TextStyle(
+                              fontSize: 19, fontWeight: FontWeight.bold),
                         ),
-                        const SizedBox(
-                          height: 30,
+                        subtitle: Text('Hello', style: TextStyle(fontSize: 18)),
+                        trailing: Text('12:56 am')),
+                    SizedBox(height: 5),
+                    ListTile(
+                        leading: FlutterLogo(size: 40),
+                        title: Text(
+                          'Person 4',
+                          style: TextStyle(
+                              fontSize: 19, fontWeight: FontWeight.bold),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            MaterialButton(
-                              color: Colors.blue,
-                              onPressed: () {
-                                showModalBottomSheet(
-                                    context: context,
-                                    builder: (BuildContext builder) {
-                                      return CupertinoDatePicker(
-                                        mode:
-                                            CupertinoDatePickerMode.dateAndTime,
-                                        onDateTimeChanged: (value) {},
-                                        initialDateTime: DateTime.now(),
-                                      );
-                                    });
-                              },
-                              child: const Text(
-                                "Pick Date",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
-                          ],
+                        subtitle: Text('Hello', style: TextStyle(fontSize: 18)),
+                        trailing: Text('8:46 pm')),
+                    SizedBox(height: 5),
+                    ListTile(
+                        leading: FlutterLogo(size: 40),
+                        title: Text(
+                          'Person 5',
+                          style: TextStyle(
+                              fontSize: 19, fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(height: 25),
-                        ListTile(
-                          leading: const FlutterLogo(size: 35),
-                          title: const Text(
-                            "Product 4",
-                          ),
-                          subtitle: const Text("400 ₹"),
-                          trailing: IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              CupertinoIcons.add_circled,
-                              color: Colors.blue,
-                            ),
-                          ),
+                        subtitle: Text('Hello', style: TextStyle(fontSize: 18)),
+                        trailing: Text('10:11 pm')),
+                    SizedBox(height: 5),
+                    ListTile(
+                        leading: FlutterLogo(size: 40),
+                        title: Text(
+                          'Person 6',
+                          style: TextStyle(
+                              fontSize: 19, fontWeight: FontWeight.bold),
                         ),
-                        ListTile(
-                          leading: const FlutterLogo(size: 35),
-                          title: const Text(
-                            "Product 1",
-                          ),
-                          subtitle: const Text("200 ₹"),
-                          trailing: IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              CupertinoIcons.add_circled,
-                              color: Colors.blue,
-                            ),
-                          ),
+                        subtitle: Text('Hello', style: TextStyle(fontSize: 18)),
+                        trailing: Text('2:01 am')),
+                    SizedBox(height: 5),
+                    ListTile(
+                        leading: FlutterLogo(size: 40),
+                        title: Text(
+                          'Person 7',
+                          style: TextStyle(
+                              fontSize: 19, fontWeight: FontWeight.bold),
                         ),
-                        ListTile(
-                          leading: const FlutterLogo(size: 35),
-                          title: const Text(
-                            "Product 5",
-                          ),
-                          subtitle: const Text("500 ₹"),
-                          trailing: IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              CupertinoIcons.add_circled,
-                              color: Colors.blue,
-                            ),
-                          ),
+                        subtitle: Text('Hello', style: TextStyle(fontSize: 18)),
+                        trailing: Text('4:10 pm')),
+                    SizedBox(height: 5),
+                    ListTile(
+                        leading: FlutterLogo(size: 40),
+                        title: Text(
+                          'Person 8',
+                          style: TextStyle(
+                              fontSize: 19, fontWeight: FontWeight.bold),
                         ),
-                      ],
-                    ),
-                  ),
+                        subtitle: Text('Hello', style: TextStyle(fontSize: 18)),
+                        trailing: Text('11:57 pm')),
+                    SizedBox(height: 5),
+                    ListTile(
+                        leading: FlutterLogo(size: 40),
+                        title: Text(
+                          'Person 9',
+                          style: TextStyle(
+                              fontSize: 19, fontWeight: FontWeight.bold),
+                        ),
+                        subtitle: Text('Hello', style: TextStyle(fontSize: 18)),
+                        trailing: Text('10:10 pm')),
+                    SizedBox(height: 5),
+                    ListTile(
+                        leading: FlutterLogo(size: 40),
+                        title: Text(
+                          'Person 10',
+                          style: TextStyle(
+                              fontSize: 19, fontWeight: FontWeight.bold),
+                        ),
+                        subtitle: Text('Hello', style: TextStyle(fontSize: 18)),
+                        trailing: Text('9:57 am')),
+                  ],
                 ),
               ),
+              SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const ListTile(
+                      leading: FlutterLogo(
+                        size: 40,
+                      ),
+                      title: Text(
+                        'My Status',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text('Tap to add status update'),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      color: Colors.grey.shade100,
+                      height: 30,
+                      child: Row(
+                        children: const [
+                          SizedBox(width: 10),
+                          Text(
+                            'Recent Updates',
+                            style: TextStyle(
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey),
+                          )
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    const ListTile(
+                      leading: FlutterLogo(size: 40),
+                      title: Text(
+                        "Person 5",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text('Today, 10:11 pm'),
+                    ),
+                    Container(
+                      color: Colors.grey.shade100,
+                      height: 30,
+                      child: Row(
+                        children: const [
+                          SizedBox(width: 10),
+                          Text(
+                            'Viewed Updates',
+                            style: TextStyle(
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey),
+                          )
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const ListTile(
+                      leading: FlutterLogo(size: 40),
+                      title: Text(
+                        "Person 1",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text('Yesterday, 4:44 pm'),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const ListTile(
+                      leading: FlutterLogo(size: 40),
+                      title: Text(
+                        "Person 2",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text('Today, 6:30 pm'),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const ListTile(
+                      leading: FlutterLogo(size: 40),
+                      title: Text(
+                        "Person 3",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text('Today, 1:14 pm'),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const ListTile(
+                      leading: FlutterLogo(size: 40),
+                      title: Text(
+                        "Person 4",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text('Yesterday, 4:20 pm'),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const ListTile(
+                      leading: FlutterLogo(size: 40),
+                      title: Text(
+                        "Person 6",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text('Today, 8:30 pm'),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const ListTile(
+                      leading: FlutterLogo(size: 40),
+                      title: Text(
+                        "Person 7",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text('Today, 9:36 pm'),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const ListTile(
+                      leading: FlutterLogo(size: 40),
+                      title: Text(
+                        'Person 8',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text('Today, 1:19 pm'),
+                    ),
+                  ],
+                ),
+              ),
+              SingleChildScrollView(
+                child: Column(
+                  children: const [
+                    ListTile(
+                      leading: FlutterLogo(size: 40),
+                      title: Text(
+                        "Person 1",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text('↙ Yesterday, 4:16 pm'),
+                      trailing: Icon(
+                        Icons.videocam,
+                        color: Colors.teal,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ListTile(
+                      leading: FlutterLogo(size: 40),
+                      title: Text(
+                        "Person 5",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text('↙ Today, 4:44 pm'),
+                      trailing: Icon(
+                        Icons.call,
+                        color: Colors.teal,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ListTile(
+                      leading: FlutterLogo(size: 40),
+                      title: Text(
+                        "Person 4",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text('↙ Today, 7:48 pm'),
+                      trailing: Icon(
+                        Icons.videocam,
+                        color: Colors.teal,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ListTile(
+                      leading: FlutterLogo(size: 40),
+                      title: Text(
+                        "Person 6",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text('↗ Yesterday, 2:18 pm'),
+                      trailing: Icon(
+                        Icons.call,
+                        color: Colors.teal,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ListTile(
+                      leading: FlutterLogo(size: 40),
+                      title: Text(
+                        "Person 9",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text('↙ Today, 2:48 pm'),
+                      trailing: Icon(
+                        Icons.videocam,
+                        color: Colors.teal,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ListTile(
+                      leading: FlutterLogo(size: 40),
+                      title: Text(
+                        "Person 3",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text('↗ Today, 11:29 pm'),
+                      trailing: Icon(
+                        Icons.call,
+                        color: Colors.teal,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ListTile(
+                      leading: FlutterLogo(size: 40),
+                      title: Text(
+                        "Person 2",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text('↗ Today, 8:47 pm'),
+                      trailing: Icon(
+                        Icons.call,
+                        color: Colors.teal,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ListTile(
+                      leading: FlutterLogo(size: 40),
+                      title: Text(
+                        "Person 7",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text('↙ Today, 6:29 pm'),
+                      trailing: Icon(
+                        Icons.call,
+                        color: Colors.teal,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         ),
-      ],
-    ));
+      ),
+    );
   }
 }
