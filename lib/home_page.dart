@@ -23,6 +23,7 @@ class _WebPageState extends State<WebPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color(0xff54759e),
         title: const Text("Web View"),
         centerTitle: true,
       ),
@@ -44,7 +45,7 @@ class _WebPageState extends State<WebPage> {
                       image: DecorationImage(
                         image: NetworkImage(e.key),
                       ),
-                      color:  Colors.blue.withOpacity(0.5),
+                      color: const Color(0xff54759e).withOpacity(0.5),
                       borderRadius: BorderRadius.circular(10)),
                 ),
               ),
