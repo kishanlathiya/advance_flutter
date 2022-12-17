@@ -1,16 +1,7 @@
 # pr2_5_mediabooster
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src = "https://user-images.githubusercontent.com/113701661/208266172-ac7567a5-a775-4aaf-afda-ee5b9f47f2f7.mp4">
+<img src = "https://user-images.githubusercontent.com/113701661/208266174-1e27f882-40a3-445b-9965-18c0f06e27f5.png" height = 550 width = 250>
+<img src = "https://user-images.githubusercontent.com/113701661/208266175-1a05894f-c2b0-4aec-a347-269a26e4b146.png" height = 550 width = 250>
+<img src = "https://user-images.githubusercontent.com/113701661/208266176-eee8c694-15c2-4813-8080-d0175574284d.png" height = 550 width = 250>
+<img src = "https://user-images.githubusercontent.com/113701661/208266178-c5194f66-41c4-4b17-bd56-fbd47dbcf85e.png" height = 550 width = 250>
