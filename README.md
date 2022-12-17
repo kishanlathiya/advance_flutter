@@ -1,6 +1,5 @@
 # pr1
 
-<img src = "https://user-images.githubusercontent.com/113701661/208236946-7fc2981d-e839-4f65-8800-6de4b1e9fbb0.jpg" height = 530 width = 250>
-<img src = "https://user-images.githubusercontent.com/113701661/208236951-319454a3-2ea7-47a6-b136-5e36178443c7.jpg" height = 530 width = 250>
-<img src = "https://user-images.githubusercontent.com/113701661/208236957-9ee05d44-51cd-4877-9c02-58a922de5e04.jpg" height = 530 width = 250>
-
+<img src = "https://user-images.githubusercontent.com/113701661/208240946-c1be99d2-49d1-42da-bb2c-41b260305361.mp4">
+<img src = "https://user-images.githubusercontent.com/113701661/208240954-eaf9ef73-e51c-4266-9446-c934114f2625.png" height = 550 width = 250>
+<img src = "https://user-images.githubusercontent.com/113701661/208240958-a381d309-7d68-4c05-bcca-5e224a1c79a4.png" height = 550 width = 250>
