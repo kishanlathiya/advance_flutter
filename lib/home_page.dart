@@ -55,12 +55,13 @@ class _HomePageState extends State<HomePage> {
                     child: ListView(
                       physics: const BouncingScrollPhysics(),
                       children: [
+                        const SizedBox(height: 20),
                         SizedBox(
-                          height: 240,
-                          child: Image.asset(
-                            "assets/images/monny.jpg",
-                          ),
+                          height: 150,
+                          child: Image.network(
+                              "https://play-lh.googleusercontent.com/pOiddrf8_IPWiUOyhj1cxbz2CzWejYdFjs8H5qGfIxnQs8YMNqZr4ScRevMhVnjS7Sg"),
                         ),
+                        const SizedBox(height: 20),
                         Row(
                           children: [
                             Text("Amount :", style: fromToStyle),
@@ -138,23 +139,6 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         const SizedBox(height: 20),
-                        Container(
-                          height: 50,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
-                            color: Global.appColor.withOpacity(0.2),
-                          ),
-                          child: Text(
-                            "Result : ${data!.difference}",
-                            style: TextStyle(
-                              color: Global.appColor,
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 20),
                         SizedBox(
                           height: 50,
                           child: ElevatedButton(
@@ -187,6 +171,23 @@ class _HomePageState extends State<HomePage> {
                             child: const Text(
                               "CONVERT",
                               style: TextStyle(fontSize: 18),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Container(
+                          height: 50,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            color: Global.appColor.withOpacity(0.2),
+                          ),
+                          child: Text(
+                            "Result : ${data!.difference}",
+                            style: TextStyle(
+                              color: Global.appColor,
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
@@ -235,12 +236,14 @@ class _HomePageState extends State<HomePage> {
                       physics: const BouncingScrollPhysics(),
                       child: Column(
                         children: [
+                          const SizedBox(height: 20),
                           SizedBox(
-                            height: 240,
-                            child: Image.asset(
-                              "assets/images/monny.jpg",
+                            height: 150,
+                            child: Image.network(
+                              "https://play-lh.googleusercontent.com/pOiddrf8_IPWiUOyhj1cxbz2CzWejYdFjs8H5qGfIxnQs8YMNqZr4ScRevMhVnjS7Sg",
                             ),
                           ),
+                          const SizedBox(height: 30),
                           Row(
                             children: [
                               Text("Amount :", style: fromToStyle),
@@ -248,14 +251,20 @@ class _HomePageState extends State<HomePage> {
                                 child: Container(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 10),
-                                  child: CupertinoTextField(
-                                    keyboardType: TextInputType.number,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      border:
-                                          Border.all(color: Global.appColor),
+                                  child: SizedBox(
+                                    height: 40,
+                                    child: CupertinoTextField(
+                                      padding: const EdgeInsets.all(10),
+                                      style:
+                                          const TextStyle(color: Colors.black),
+                                      keyboardType: TextInputType.number,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(50),
+                                        border:
+                                            Border.all(color: Global.appColor),
+                                      ),
+                                      controller: amtController,
                                     ),
-                                    controller: amtController,
                                   ),
                                 ),
                               ),
@@ -288,7 +297,7 @@ class _HomePageState extends State<HomePage> {
                                                   0.60,
                                               height: 250,
                                               child: CupertinoPicker(
-                                                backgroundColor: Colors.white,
+                                                backgroundColor: Colors.grey,
                                                 itemExtent: 30,
                                                 children:
                                                     Global.currency.map((e) {
@@ -317,6 +326,8 @@ class _HomePageState extends State<HomePage> {
                                               ),
                                               Text(
                                                 fromCurrency,
+                                                style: const TextStyle(
+                                                    color: Colors.black),
                                               ),
                                               const Spacer(),
                                               const Icon(CupertinoIcons
@@ -351,7 +362,7 @@ class _HomePageState extends State<HomePage> {
                                                   0.60,
                                               height: 250,
                                               child: CupertinoPicker(
-                                                backgroundColor: Colors.white,
+                                                backgroundColor: Colors.grey,
                                                 itemExtent: 30,
                                                 children:
                                                     Global.currency.map((e) {
@@ -380,6 +391,8 @@ class _HomePageState extends State<HomePage> {
                                               ),
                                               Text(
                                                 toCurrency,
+                                                style: const TextStyle(
+                                                    color: Colors.black),
                                               ),
                                               const Spacer(),
                                               const Icon(CupertinoIcons
@@ -396,25 +409,6 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                             ],
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Container(
-                            height: 50,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(100),
-                              color: Global.appColor.withOpacity(0.2),
-                            ),
-                            child: Text(
-                              "Result : ${data!.difference}",
-                              style: TextStyle(
-                                color: Global.appColor,
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
                           ),
                           const SizedBox(
                             height: 20,
@@ -442,7 +436,27 @@ class _HomePageState extends State<HomePage> {
                               },
                               child: const Text(
                                 "CONVERT",
-                                style: TextStyle(fontSize: 18),
+                                style: TextStyle(
+                                    fontSize: 18, color: Colors.white),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Container(
+                            height: 50,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100),
+                              color: Global.appColor.withOpacity(0.2),
+                            ),
+                            child: Text(
+                              "Result : ${data!.difference}",
+                              style: TextStyle(
+                                color: Global.appColor,
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
