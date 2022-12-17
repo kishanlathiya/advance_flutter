@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
-import 'song_model_page.dart';
+import 'package:flutter/material.dart';
+
+import 'global.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -10,133 +11,96 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final assetsAudioPlayer = AssetsAudioPlayer();
+
+  Duration totalDuration = Duration.zero;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xff252525),
       appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Colors.black,
-        title: const Text(
-          "RAINBOW MUSIC",
-          style: TextStyle(color: Colors.white, fontSize: 26),
+        backgroundColor: Colors.black54,
+        leading: const Icon(
+          Icons.queue_music,
+          size: 30,
+          color: Colors.black,
         ),
+        title: const Text(
+          "Audio Player",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 30,
+          ),
+        ),
+        centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        child: Column(
+      body: Container(
+        alignment: Alignment.center,
+        child: ListView(
+          physics: const BouncingScrollPhysics(),
           children: [
-            Column(
-              children: songs
-                  .map((e) => MusicBox(
-                        data: e,
-                      ))
-                  .toList(),
-            ),
+            const SizedBox(height: 10),
+            ...Global.Songs.map(
+              (e) => Column(
+                children: [
+                  Card(
+                    color: const Color(0xff252525),
+                    surfaceTintColor: Colors.white,
+                    semanticContainer: true,
+                    shadowColor: Colors.green,
+                    margin: const EdgeInsets.only(left: 20, right: 20),
+                    elevation: 3,
+                    child: ListTile(
+                      contentPadding: const EdgeInsets.all(5),
+                      visualDensity: VisualDensity.standard,
+                      minVerticalPadding: 10,
+                      enableFeedback: true,
+                      focusColor: Colors.green,
+                      enabled: true,
+                      selected: true,
+                      onTap: () {
+                        setState(() {
+                          Global.s = e;
+                        });
+                        Navigator.of(context)
+                            .pushNamed('audio_page', arguments: e);
+                      },
+                      isThreeLine: true,
+                      leading: Container(
+                        height: 50,
+                        width: 50,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            image: DecorationImage(
+                              image: AssetImage(e['images']),
+                            )),
+                      ),
+                      title: Text(
+                        e['name'],
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 30,
+                          color: Colors.white,
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                      subtitle: Text(
+                        e['singer'],
+                        style: const TextStyle(
+                          fontSize: 15,
+                          color: Colors.grey,
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                ],
+              ),
+            ).toList(),
           ],
         ),
       ),
-    );
-  }
-}
-
-class MusicBox extends StatefulWidget {
-  MusicBox({Key? key, required this.data}) : super(key: key);
-  Song data;
-
-  @override
-  State<MusicBox> createState() => _MusicBoxState();
-}
-
-class _MusicBoxState extends State<MusicBox> {
-  final assetsAudioPlayer = AssetsAudioPlayer();
-  double songDurationInSeconds = 0;
-  String songDuration = "0:0:0";
-
-  @override
-  void initState() {
-    super.initState();
-    assetsAudioPlayer.open(
-      Playlist(
-          audios: songs.map((e) => Audio(e.song)).toList(),
-          startIndex: songs.indexOf(widget.data)),
-      autoStart: false,
-    );
-    assetsAudioPlayer.current.listen((Playing? playing) {
-      songDuration = playing!.audio.duration.toString().split(".")[0];
-      songDurationInSeconds = playing.audio.duration.inSeconds.toDouble();
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        InkWell(
-          onTap: () {
-            songIndex = songs.indexOf(widget.data);
-            Navigator.pushNamed(context, "player");
-          },
-          child: Container(
-            padding: const EdgeInsets.only(right: 20),
-            margin: const EdgeInsets.only(top: 10, left: 10, right: 10),
-            height: 80,
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-                color: widget.data.color,
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black45.withOpacity(0.15),
-                    offset: const Offset(0, 0),
-                    blurRadius: 3,
-                    spreadRadius: 1,
-                  )
-                ]),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  height: 70,
-                  width: 70,
-                  decoration: BoxDecoration(
-                    color: Colors.blue,
-                       // borderRadius: const BorderRadius.only(topLeft: Radius.circular(15), bottomLeft: Radius.circular(15)),
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                        image: NetworkImage(widget.data.image),
-                        fit: BoxFit.cover),
-                  ),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.data.name,
-                      style: const TextStyle(fontSize: 20),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      widget.data.artist,
-                      style: const TextStyle(fontSize: 15),
-                    ),
-                  ],
-                ),
-                const Spacer(),
-                Text(songDuration),
-              ],
-            ),
-          ),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-      ],
     );
   }
 }
